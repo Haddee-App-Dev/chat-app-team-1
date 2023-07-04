@@ -1,24 +1,29 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from "expo-status-bar";
+import * as React from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { StyleSheet, Text, View } from "react-native";
+import { ChatScreen } from './components/chatscreen';
+import { ContactScreen } from './components/contactscreen';
+import { SelfProfileScreen } from "./components/profile";
+import { Icon } from 'react-native-elements';
 
-import HomeScreen from './screens/Home';
-import LoginScreen from './screens/Login';
-
-const Stack = createNativeStackNavigator();
-
-const MyStack = () => {
+export default function App() {
+  const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: 'Home' }}
-        />
-        <Stack.Screen name="Login" component={LoginScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Chats" component={ChatScreen} options={{
+          tabBarIcon: () => (<Icon name="chat" />)
+        }} />
+        <Tab.Screen name="Contacts" component={ContactScreen} options={{
+          tabBarIcon: () => (<Icon name="person" />)
+        }} />
+        <Tab.Screen name="Me" component={SelfProfileScreen} options={{
+          headerShown: false,
+          tabBarIcon: () => (<Icon name="person" />)
+        }} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
-export default MyStack
