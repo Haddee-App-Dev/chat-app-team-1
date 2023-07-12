@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^18.0.1",
+    "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
@@ -19,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-native": "0.71.8",
     "react-native-elements": "^3.4.3",
-    "react-native-web": "~0.18.11"
+    "react-native-web": "~0.18.11",
+    "react-navigation-stack": "^2.10.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
