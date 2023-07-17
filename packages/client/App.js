@@ -5,10 +5,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, Text, View } from "react-native";
-import { ChatScreen } from './components/chatScreen';
-import { ContactScreen } from './components/contactScreen';
+import { ChatScreen } from './components/chatscreen';
+import { ContactScreen } from './components/contactscreen';
 import { SelfProfileScreen } from "./components/profile";
-import LoginScreen from "./screens/login";
+import Login from "./screens/Login";
 import SignUpScreen from "./screens/signUp";
 import { Icon } from 'react-native-elements';
 
@@ -41,7 +41,7 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
