@@ -3,31 +3,23 @@ import { SearchBar } from 'react-native-elements';
 import { ChatScreenHeader } from '../components/chatscreenmenu.js';
 import * as React from 'react';
 import tempChatCover from '../assets/favicon.png';
+import { useQuery } from '@apollo/client';
+import { chatDisplayListQuery } from '../api/chatDisplayList.js';
+import { ActivityIndicator } from 'react-native-paper';
 
-
-// Here until firebase + graphql is set up to steal data from there
-const TEMP_DATA = [
-    { id: 1, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 2, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 3, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 4, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 5, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 6, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 7, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 8, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 9, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 10, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-    { id: 11, chatCover: tempChatCover, chatTitle: "Gamer Gang", chatDescription: "Cool kids only" },
-];
 
 export function ChatScreen() {
 
     const renderChat = ({ item }) => (
         <View style={styles.renderChatStyle}>
-            <Image source={item.chatCover} style={styles.chatCoverStyle} />
+            {/* Change it back to "source={item.chatCover}" */}
+            <Image source={tempChatCover} style={styles.chatCoverStyle} />
             <View style={styles.chatTextContainer}>
                 <Text style={styles.chatTitleStyle}>{item.chatTitle}</Text>
                 <Text style={styles.chatDescrptionStyle}>{item.chatDescription}</Text>
+            </View>
+            <View style={styles.chatDateContainer}>
+                <Text style={styles.chatDateStyle}>{item.date}</Text>
             </View>
         </View>
     );
@@ -38,6 +30,11 @@ export function ChatScreen() {
         setSearchQuery(query);
     }
 
+    const { loading, data, error } = useQuery(chatDisplayListQuery);
+
+    if (loading) {
+        return <ActivityIndicator />
+    }
     return (
         <View style={styles.root}>
             <ChatScreenHeader />
@@ -51,7 +48,7 @@ export function ChatScreen() {
             />
             <FlatList
                 horizontal={false}
-                data={TEMP_DATA}
+                data={data?.TEMP_CHATDISPLAYLIST}
                 renderItem={renderChat}
                 keyExtractor={(item) => item.id}
             />
@@ -74,7 +71,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         padding: 5,
-        backgroundColor: 'yellow',
+        alignItems: 'center'
     },
     chatCoverStyle: {
         width: 60,
@@ -82,9 +79,9 @@ const styles = StyleSheet.create({
     },
     chatTextContainer: {
         flexDirection: 'column',
-        marginRight: 'auto',
-        marginLeft: 5,
-        borderBottomWidth: 1
+        alignSelf: 'flex-start',
+        marginLeft: 5
+        //backgroundColor: 'yellow',
     },
     chatTitleStyle: {
         fontSize: 18,
@@ -93,5 +90,15 @@ const styles = StyleSheet.create({
     chatDescrptionStyle: {
         fontSize: 14,
         fontWeight: '200'
+    },
+    chatDateContainer: {
+        marginLeft: 'auto',
+        marginBottom: 'auto',
+        backgroundColor: 'yellow'
+    },
+    chatDateStyle: {
+        //alignSelf: 'flex-end',
+        fontSize: 12,
+        fontWeight: '200',
     }
 })

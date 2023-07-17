@@ -1,18 +1,20 @@
 import * as Firebase from "firebase/app";
 import { getAuth } from 'firebase/auth';
+import { FIREBASE_API_KEY } from '@env';
 
 // Import the functions you need from the SDKs you need
 //import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+console.log(FIREBASE_API_KEY);
 
 const firebase = Firebase;
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyD6vm9tBLp_wisgCgC-O1KX2ypIwENT6-o",
+    apiKey: FIREBASE_API_KEY,
     authDomain: "chatapp-1e218.firebaseapp.com",
     projectId: "chatapp-1e218",
     storageBucket: "chatapp-1e218.appspot.com",

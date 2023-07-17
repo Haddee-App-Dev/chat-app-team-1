@@ -1,0 +1,13 @@
+
+""" Data format for flatlist chat display """
+type ChatDisplayList {
+    id: String!
+    chatCover: String
+    chatTitle: String!
+    chatDescription: String!
+    date: String!
+}
+
+type Query {
+    TEMP_CHATDISPLAYLIST: [ChatDisplayList]
+}
