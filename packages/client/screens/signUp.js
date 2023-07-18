@@ -4,7 +4,7 @@ import CustomInput from "../components/customInput";
 import CustomButton from "../components/customButton";
 import Logo from "../assets/icon.png";
 
-const Login = ({ navigation }) => {
+const SignUp = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { height } = useWindowDimensions();
@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
                     secureTextEntry={true}
                 />
                 <CustomButton
-                    text="Sign In"
+                    text="Sign Up"
                     onPress={handleLogin}
                 />
                 <CustomButton
@@ -41,11 +41,6 @@ const Login = ({ navigation }) => {
                     onPress={handleLogin} //additional sign in w/ google logic required
                     bgColor="#E7EAF4"
                     fgColor="#3B71F3"
-                />
-                <CustomButton
-                    text="Don't have an account?"
-                    onPress={handleSignUp}
-                    type="TERTIARY"
                 />
             </View>
         </ScrollView>
@@ -62,4 +57,4 @@ const styles = StyleSheet.create({
         maxHeight: 300,
     },
 });
-export default Login
+export default SignUp
