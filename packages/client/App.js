@@ -1,10 +1,9 @@
-import { StatusBar } from "expo-status-bar";
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { ChatScreen } from './components/chatscreen';
 import { ContactScreen } from './components/contactscreen';
 import { SelfProfileScreen } from "./components/profile";
