@@ -11,6 +11,9 @@ import { SelfProfileScreen } from "./components/profile";
 import Login from "./screens/Login";
 import SignUpScreen from "./screens/signUp";
 import { Icon } from 'react-native-elements';
+import { PaperProvider } from "react-native-paper";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./graphql.js";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -36,17 +39,21 @@ function HomeScreen() {
 export default function App() {
 
   return (
-    <View style={styles.root}>
-      <NavigationContainer >
-        <Stack.Navigator
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="SignUp" component={SignUpScreen} />
-          <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
+    <ApolloProvider client={client}>
+      <PaperProvider>
+        <View style={styles.root}>
+          <NavigationContainer >
+            <Stack.Navigator
+              screenOptions={{ headerShown: false }}
+            >
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="SignUp" component={SignUpScreen} />
+              <Stack.Screen name="HomeScreen" component={HomeScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+      </PaperProvider>
+    </ApolloProvider>
   );
 };
 const styles = StyleSheet.create({
