@@ -23,4 +23,11 @@ export const resolvers = {
             return TEMP_CHATDISPLAYLIST;
         }
     },
+    Mutation: {
+        createNewUser: async (_, params) => {
+            const { email, password } = params;
+            console.log('Create New User function called');
+            return await createNewUser(email, password);
+        }
+    }
 };

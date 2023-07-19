@@ -8,6 +8,16 @@ type ChatDisplayList {
     date: String!
 }
 
+type User{
+    id: String!
+    email: String!
+    password: String!
+}
+
 type Query {
     TEMP_CHATDISPLAYLIST: [ChatDisplayList]
+}
+
+type Mutation{
+    createNewUser(id: String!, email: String!, password: String!): User
 }

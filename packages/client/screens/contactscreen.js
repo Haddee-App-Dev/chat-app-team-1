@@ -1,9 +1,9 @@
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 
 export function ContactScreen() {
     return (
-        <View>
+        <SafeAreaView>
             <Text>Test</Text>
-        </View>
+        </SafeAreaView>
     );
 }

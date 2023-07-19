@@ -20,16 +20,21 @@ const Stack = createStackNavigator();
 function HomeScreen() {
   return (
     <Tab.Navigator
-      initialRouteName="Home "
+      initialRouteName="Home"
     >
       <Tab.Screen name="Chats" component={ChatScreen} options={{
+        headerShown: false,
         tabBarIcon: () => (<Icon name="chat" />)
       }} />
       <Tab.Screen name="Contacts" component={ContactScreen} options={{
         tabBarIcon: () => (<Icon name="person" />)
       }} />
       <Tab.Screen name="Me" component={SelfProfileScreen} options={{
-        tabBarIcon: () => (<Icon name="person" />)
+        tabBarIcon: () => (<Icon name="person" />),
+        headerStyle: {
+          height: 70,
+          backgroundColor: 'red'
+        }
       }} />
     </Tab.Navigator>
   )
@@ -58,6 +63,6 @@ export default function App() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: "F9FBFC",
+    backgroundColor: "blue",
   },
 });
