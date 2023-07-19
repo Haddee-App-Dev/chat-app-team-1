@@ -13,7 +13,7 @@ const Login = ({ navigation }) => {
         //additional login logic required
         navigation.navigate('HomeScreen', { screen: 'Chats' });
     }
-    const handleSignUp = () => {
+    const navigateSignUp = () => {
         navigation.navigate('SignUp');
     }
 
@@ -44,7 +44,7 @@ const Login = ({ navigation }) => {
                 />
                 <CustomButton
                     text="Don't have an account?"
-                    onPress={handleSignUp}
+                    onPress={navigateSignUp}
                     type="TERTIARY"
                 />
             </View>

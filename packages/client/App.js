@@ -1,13 +1,12 @@
-import { StatusBar } from "expo-status-bar";
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, Text, View } from "react-native";
-import { ChatScreen } from './components/chatscreen';
-import { ContactScreen } from './components/contactscreen';
-import { SelfProfileScreen } from "./components/profile";
+import { StyleSheet, SafeAreaView } from "react-native";
+import { ChatScreen } from './screens/chatScreen';
+import { ContactScreen } from './screens/contactScreen';
+import { SelfProfileScreen } from "./screens/Profile";
 import Login from "./screens/Login";
 import SignUpScreen from "./screens/signUp";
 import { Icon } from 'react-native-elements';
@@ -41,7 +40,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <PaperProvider>
-        <View style={styles.root}>
+        <SafeAreaView style={styles.root}>
           <NavigationContainer >
             <Stack.Navigator
               screenOptions={{ headerShown: false }}
@@ -51,7 +50,7 @@ export default function App() {
               <Stack.Screen name="HomeScreen" component={HomeScreen} />
             </Stack.Navigator>
           </NavigationContainer>
-        </View>
+        </SafeAreaView>
       </PaperProvider>
     </ApolloProvider>
   );
