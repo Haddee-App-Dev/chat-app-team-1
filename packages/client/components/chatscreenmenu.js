@@ -2,6 +2,8 @@ import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar, IconButton, Menu, Divider, PaperProvider } from 'react-native-paper';
 
+
+//Add props so that the headerText can be changed
 export function ChatScreenHeader() {
     const [visible, setVisible] = React.useState(false);
 
