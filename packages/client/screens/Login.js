@@ -3,6 +3,7 @@ import { View, StyleSheet, Image, useWindowDimensions, ScrollView } from "react-
 import CustomInput from "../components/customInput";
 import CustomButton from "../components/customButton";
 import Logo from "../assets/icon.png";
+import { signIn } from "../util/auth";
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState('');

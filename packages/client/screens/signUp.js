@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
 import CustomInput from "../components/customInput";
 import CustomButton from "../components/customButton";
+import { signUp } from "../util/auth";
+
 
 const SignUp = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -10,6 +12,7 @@ const SignUp = ({ navigation }) => {
 
     const handleSignUp = () => {
         //additional login logic required
+
         navigation.navigate('HomeScreen', { screen: 'Chats' });
     }
     const navigateSignIn = () => {
