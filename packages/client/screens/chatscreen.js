@@ -1,6 +1,6 @@
 import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import { SearchBar } from 'react-native-elements';
-import { ChatScreenHeader } from '../components/chatScreenMenu.js';
+import { ChatScreenHeader } from '../components';
 import * as React from 'react';
 import tempChatCover from '../assets/favicon.png';
 import { useQuery } from '@apollo/client';

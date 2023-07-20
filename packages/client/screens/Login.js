@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Image, useWindowDimensions, ScrollView } from "react-native";
-import CustomInput from "../components/customInput";
-import CustomButton from "../components/customButton";
+import { CustomInput } from "../components/customInput";
+import { CustomButton } from "../components/customButton";
 import Logo from "../assets/icon.png";
 
-const Login = ({ navigation }) => {
+export const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { height } = useWindowDimensions();
@@ -62,4 +62,3 @@ const styles = StyleSheet.create({
         maxHeight: 300,
     },
 });
-export default Login
