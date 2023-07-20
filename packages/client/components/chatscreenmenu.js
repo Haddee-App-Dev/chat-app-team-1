@@ -1,34 +1,15 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Avatar, IconButton, Menu, Divider, PaperProvider } from 'react-native-paper';
+import { View, Text, StyleSheet } from 'react-native';
 
-export function ChatScreenHeader() {
-    const [visible, setVisible] = React.useState(false);
-
-    const openMenu = () => setVisible(true);
-
-    const closeMenu = () => setVisible(false);
-
+export function ChatScreenHeader(props) {
+    const { headerTitle, button } = props;
     return (
         <View style={styles.header}>
-            <Text style={styles.headerText}>Best Chat App</Text>
-            <TouchableOpacity onPress={openMenu} style={styles.menuContainer}>
-                {/* <IconButton icon="plus-circle" style={styles.icons} /> */}
-                <Menu
-                    visible={visible}
-                    onDismiss={closeMenu}
-                    anchor={<IconButton icon="plus-circle" style={styles.icons} />}
-                >
-                    <Menu.Item onPress={() => { }} title="New Chat" />
-                    <Divider />
-                    <Menu.Item onPress={() => { }} title="Add Contacts" />
-                    <Divider />
-                    <Menu.Item onPress={() => { }} title="Scan" />
-                    <Divider />
-                    <Menu.Item onPress={() => { }} title="Money" />
-                </Menu>
-            </TouchableOpacity>
-        </View>
+            <Text style={styles.headerText}>{headerTitle}</Text>
+            {
+                button
+            }
+        </View >
     );
 }
 
@@ -48,10 +29,5 @@ const styles = StyleSheet.create({
     },
     menuContainer: {
         //marginLeft: 'auto'
-    },
-    icons: {
-        width: 20,
-        height: 20,
-        // marginLeft: 'auto'
     },
 });

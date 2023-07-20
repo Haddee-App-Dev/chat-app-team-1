@@ -18,16 +18,16 @@ const TEMP_CHATDISPLAYLIST = [
 
 export const resolvers = {
     Query: {
-        TEMP_CHATDISPLAYLIST: () => {
+        chatList: () => {
             console.log("WTF IS GOING ON");
             return TEMP_CHATDISPLAYLIST;
         }
     },
     Mutation: {
         createNewUser: async (_, params) => {
-            const { email, password } = params;
+            const { email } = params;
             console.log('Create New User function called');
-            return await createNewUser(email, password);
+            return await createNewUser(email);
         }
     }
 };

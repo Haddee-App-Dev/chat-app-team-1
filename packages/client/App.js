@@ -27,14 +27,12 @@ function HomeScreen() {
         tabBarIcon: () => (<Icon name="chat" />)
       }} />
       <Tab.Screen name="Contacts" component={ContactScreen} options={{
+        headerShown: false,
         tabBarIcon: () => (<Icon name="person" />)
       }} />
       <Tab.Screen name="Me" component={SelfProfileScreen} options={{
+        headerShown: false,
         tabBarIcon: () => (<Icon name="person" />),
-        headerStyle: {
-          height: 70,
-          backgroundColor: 'red'
-        }
       }} />
     </Tab.Navigator>
   )
@@ -63,6 +61,5 @@ export default function App() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: "blue",
   },
 });
