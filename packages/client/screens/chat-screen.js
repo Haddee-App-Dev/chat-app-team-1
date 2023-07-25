@@ -1,11 +1,12 @@
 import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import { SearchBar } from 'react-native-elements';
-import { ChatScreenHeader } from '../components/chatscreenmenu.js';
+import { ChatScreenHeader } from '../components/chat-screen-menu.js';
 import * as React from 'react';
 import tempChatCover from '../assets/favicon.png';
 import { useQuery } from '@apollo/client';
 import { chatDisplayListQuery } from '../api/chatDisplayList.js';
 import { ActivityIndicator } from 'react-native-paper';
+import { UniversalAppContainer } from '../components/app-container.js';
 
 
 export function ChatScreen() {
@@ -36,23 +37,25 @@ export function ChatScreen() {
         return <ActivityIndicator />
     }
     return (
-        <View style={styles.root}>
-            <ChatScreenHeader />
-            <SearchBar
-                lightTheme={true}
-                placeholder="Search"
-                onChangeText={onChangeSearch}
-                value={searchQuery}
-                containerStyle={styles.searchBarContainer}
-                inputContainerStyle={styles.searchBarInput}
-            />
-            <FlatList
-                horizontal={false}
-                data={data?.TEMP_CHATDISPLAYLIST}
-                renderItem={renderChat}
-                keyExtractor={(item) => item.id}
-            />
-        </View>
+        <UniversalAppContainer>
+            <View style={styles.root}>
+                <ChatScreenHeader />
+                <SearchBar
+                    lightTheme={true}
+                    placeholder="Search"
+                    onChangeText={onChangeSearch}
+                    value={searchQuery}
+                    containerStyle={styles.searchBarContainer}
+                    inputContainerStyle={styles.searchBarInput}
+                />
+                <FlatList
+                    horizontal={false}
+                    data={data?.TEMP_CHATDISPLAYLIST}
+                    renderItem={renderChat}
+                    keyExtractor={(item) => item.id}
+                />
+            </View>
+        </UniversalAppContainer>
     );
 }
 
