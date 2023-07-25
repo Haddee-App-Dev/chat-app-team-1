@@ -26,9 +26,23 @@ export function ContactScreen() {
         // </TouchableOpacity>
     );
 
+    const [searchQuery, setSearchQuery] = React.useState('');
+
+    const onChangeSearch = (query) => {
+        setSearchQuery(query);
+    }
+
     return (
         <View style={styles.root}>
             <ChatScreenHeader />
+            <SearchBar
+                lightTheme={true}
+                placeholder="Search Contacts"
+                onChangeText={onChangeSearch}
+                value={searchQuery}
+                containerStyle={styles.searchBarContainer}
+                inputContainerStyle={styles.searchBarInput}
+            />
             <FlatList
                 horizontal={false}
                 data={TEMP_DATA.sort((a, b) => a.contactUsername.localeCompare(b.contactUsername))}
