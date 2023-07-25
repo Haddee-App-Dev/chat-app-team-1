@@ -1,5 +1,6 @@
 import { ChatScreenHeader } from '../components';
 import { SearchBar } from 'react-native-elements';
+import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
 import tempProfilePic from '../assets/favicon.png';
 
