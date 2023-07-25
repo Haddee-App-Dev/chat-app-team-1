@@ -4,11 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, SafeAreaView } from "react-native";
-import { ChatScreen } from './screens/chatScreen';
-import { ContactScreen } from './screens/contactScreen';
-import { SelfProfileScreen } from "./screens/Profile";
-import Login from "./screens/Login";
-import SignUpScreen from "./screens/signUp";
+import { ChatScreen } from './screens/chatscreen';
+import { ContactScreen } from './screens/contactscreen';
+import { SelfProfileScreen } from "./screens/profile";
+import { Login } from "./screens/login";
+import { SignUp } from "./screens/signup";
 import { Icon } from 'react-native-elements';
 import { PaperProvider } from "react-native-paper";
 import { ApolloProvider } from "@apollo/client";
@@ -46,7 +46,7 @@ export default function App() {
               screenOptions={{ headerShown: false }}
             >
               <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="SignUp" component={SignUpScreen} />
+              <Stack.Screen name="SignUp" component={SignUp} />
               <Stack.Screen name="HomeScreen" component={HomeScreen} />
             </Stack.Navigator>
           </NavigationContainer>
