@@ -10,8 +10,8 @@ export const Login = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const { height } = useWindowDimensions();
 
-    const handleLogin = () => {
-        //additional login logic required
+    const handleLogin = async () => {
+        await signIn(email, password);
         navigation.navigate('HomeScreen', { screen: 'Chats' });
     }
     const navigateSignUp = () => {
@@ -41,7 +41,7 @@ export const Login = ({ navigation }) => {
                 />
                 <CustomButton
                     text="Sign In with Google"
-                    onPress={handleLogin} //additional sign in w/ google logic required
+                    onPress={handleLogin}
                     bgColor="#E7EAF4"
                     fgColor="#3B71F3"
                 />
