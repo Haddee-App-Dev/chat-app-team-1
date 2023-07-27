@@ -21,6 +21,7 @@ function HomeScreen() {
   return (
     <Tab.Navigator
       initialRouteName="Home "
+      screenOptions={{ headerShown: false }}
     >
       <Tab.Screen name="Chats" component={ChatScreen} options={{
         tabBarIcon: () => (<Icon name="chat" />)
