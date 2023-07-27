@@ -9,5 +9,5 @@ type ChatDisplayList {
 }
 
 type Query {
-    TEMP_CHATDISPLAYLIST: [ChatDisplayList]
+    ChatList: [ChatDisplayList]
 }

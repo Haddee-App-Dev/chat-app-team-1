@@ -1,6 +1,6 @@
 
 
-//Figure out how to put chatcover later
+//Figure out how to put chatcover later + move to firebase storage
 const TEMP_CHATDISPLAYLIST = [
     { id: '1', /*chatCover: tempChatCover,*/ chatTitle: "Gamer Gang", chatDescription: "Cool kids only", date: "1/1/2022" },
     { id: '2', /*chatCover: tempChatCover,*/ chatTitle: "Gamer Gang", chatDescription: "Cool kids only", date: "1/1/2022" },
@@ -18,8 +18,7 @@ const TEMP_CHATDISPLAYLIST = [
 
 export const resolvers = {
     Query: {
-        TEMP_CHATDISPLAYLIST: () => {
-            console.log("WTF IS GOING ON");
+        ChatList: () => {
             return TEMP_CHATDISPLAYLIST;
         }
     },
