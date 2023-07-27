@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 
 export const chatDisplayListQuery = gql`
-    query ChatList {
-        ChatList {
+    query chatList {
+        chatList {
             id
             chatTitle
             chatDescription

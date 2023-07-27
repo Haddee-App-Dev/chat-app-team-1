@@ -1,10 +1,11 @@
-import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { Divider, SearchBar } from 'react-native-elements';
+import { ChatScreenHeader } from '../components/chatScreenMenu.js';
 import * as React from 'react';
 import tempChatCover from '../assets/favicon.png';
 import { useQuery } from '@apollo/client';
 import { chatDisplayListQuery } from '../api/chatDisplayList.js';
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator, IconButton, Menu } from 'react-native-paper';
 import { ChatScreenHeader, UniversalAppContainer } from '../components';
 
 
@@ -32,10 +33,36 @@ export function ChatScreen() {
 
     const { loading, data, error } = useQuery(chatDisplayListQuery);
 
+    const [visible, setVisible] = React.useState(false);
+
+    const openMenu = () => setVisible(true);
+
+    const closeMenu = () => setVisible(false);
+
     if (loading) {
         return <ActivityIndicator />
     }
     return (
+        // Will add back later
+        //     <ChatScreenHeader headerTitle="Chats"
+        //     button={
+        //         <TouchableOpacity onPress={openMenu} style={styles.menuContainer} >
+        //             <Menu
+        //                 visible={visible}
+        //                 onDismiss={closeMenu}
+        //                 anchor={<IconButton icon="plus-circle" style={styles.icons} />}
+        //             >
+        //                 <Menu.Item onPress={() => { }} title="New Chat" />
+        //                 <Divider />
+        //                 <Menu.Item onPress={() => { }} title="Add Contacts" />
+        //                 <Divider />
+        //                 <Menu.Item onPress={() => { }} title="Scan" />
+        //                 <Divider />
+        //                 <Menu.Item onPress={() => { }} title="Money" />
+        //             </Menu>
+        //         </TouchableOpacity>
+        //     }
+        // />
         <UniversalAppContainer>
             <View style={styles.root}>
                 <ChatScreenHeader />
@@ -49,7 +76,7 @@ export function ChatScreen() {
                 />
                 <FlatList
                     horizontal={false}
-                    data={data?.TEMP_CHATDISPLAYLIST}
+                    data={data?.chatList}
                     renderItem={renderChat}
                     keyExtractor={(item) => item.id}
                 />
@@ -102,5 +129,10 @@ const styles = StyleSheet.create({
         //alignSelf: 'flex-end',
         fontSize: 12,
         fontWeight: '200',
-    }
+    },
+    icons: {
+        width: 22,
+        height: 22,
+        // marginLeft: 'auto'
+    },
 })

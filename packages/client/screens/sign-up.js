@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
 import { CustomInput, CustomButton } from '../components';
+import { signUp } from "../util/auth.js";
 
 export const SignUp = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -10,6 +11,7 @@ export const SignUp = ({ navigation }) => {
 
     const handleSignUp = () => {
         //additional login logic required
+
         navigation.navigate('HomeScreen', { screen: 'Chats' });
     }
     const navigateSignIn = () => {
@@ -20,26 +22,24 @@ export const SignUp = ({ navigation }) => {
             <View style={styles.root}>
                 <Text style={styles.title}> Create an account </Text>
                 <CustomInput
-                    placeholder="Username"
-                    value={username}
-                    onChangeText={setUsername}
-                />
-                <CustomInput
                     placeholder="Email"
                     value={email}
                     onChangeText={setEmail}
+                    autoCapitalize="none"
                 />
                 <CustomInput
                     placeholder="Password"
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={true}
+                    autoCapitalize="none"
                 />
                 <CustomInput
                     placeholder="Password Re-Entry"
                     value={passwordReEntry}
                     onChangeText={setPasswordReEntry}
                     secureTextEntry={true}
+                    autoCapitalize="none"
                 />
                 <CustomButton
                     text="Sign Up"
@@ -52,7 +52,7 @@ export const SignUp = ({ navigation }) => {
                     fgColor="#3B71F3"
                 />
                 <CustomButton
-                    text="Don't have an account?"
+                    text="Already have an account?"
                     onPress={navigateSignIn}
                     type="TERTIARY"
                 />

@@ -1,9 +1,11 @@
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
+import { ChatScreenHeader } from '../components/chatScreenMenu.js';
 
 export function ContactScreen() {
     return (
-        <View>
+        <SafeAreaView>
+            <ChatScreenHeader headerTitle="Contacts" />
             <Text>Test</Text>
-        </View>
+        </SafeAreaView>
     );
 }

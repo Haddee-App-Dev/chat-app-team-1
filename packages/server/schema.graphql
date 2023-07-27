@@ -8,6 +8,15 @@ type ChatDisplayList {
     date: String!
 }
 
+type User{
+    id: String!
+    email: String!
+}
+
 type Query {
-    ChatList: [ChatDisplayList]
+    chatList: [ChatDisplayList]
+}
+
+type Mutation{
+    createNewUser(id: String!, email: String!): User
 }
