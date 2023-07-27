@@ -2798,11 +2798,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-<<<<<<< HEAD
 "@urql/core@2.3.6":
-=======
-"@urql/core@>=2.3.1", "@urql/core@2.3.6":
->>>>>>> auth
   version "2.3.6"
   resolved "https://registry.npmjs.org/@urql/core/-/core-2.3.6.tgz"
   integrity sha512-PUxhtBh7/8167HJK6WqBv6Z0piuiaZHQGYbhwpNL9aIQmLROPEdaUYkY4wh45wPQXcTpnd11l0q3Pw+TI11pdw==

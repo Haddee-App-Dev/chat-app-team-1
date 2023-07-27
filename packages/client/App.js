@@ -3,8 +3,8 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, SafeAreaView } from "react-native";
 import { ChatScreen, ContactScreen, SelfProfileScreen, Login, SignUp } from './screens';
+import { UniversalAppContainer } from './components';
 import { Icon } from 'react-native-elements';
 import { PaperProvider } from "react-native-paper";
 import { ApolloProvider } from "@apollo/client";
@@ -40,7 +40,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <PaperProvider>
-        <SafeAreaView style={styles.root}>
+        <UniversalAppContainer>
           <NavigationContainer >
             <Stack.Navigator
               screenOptions={{ headerShown: false }}
@@ -50,13 +50,8 @@ export default function App() {
               <Stack.Screen name="HomeScreen" component={HomeScreen} />
             </Stack.Navigator>
           </NavigationContainer>
-        </SafeAreaView>
+        </UniversalAppContainer>
       </PaperProvider>
     </ApolloProvider>
   );
 };
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
-});

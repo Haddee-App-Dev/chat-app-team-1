@@ -9,8 +9,8 @@ export const SignUp = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const [passwordReEntry, setPasswordReEntry] = useState('');
 
-    const handleSignUp = () => {
-        //additional login logic required
+    const handleSignUp = async () => {
+        await signUp(email, password);
 
         navigation.navigate('HomeScreen', { screen: 'Chats' });
     }

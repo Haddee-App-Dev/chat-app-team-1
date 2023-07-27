@@ -1,5 +1,5 @@
 import { Text, SafeAreaView, StyleSheet } from 'react-native';
-import { ChatScreenHeader } from '../components/chatScreenMenu.js';
+import { ChatScreenHeader } from '../components';
 
 export function SelfProfileScreen() {
     return (
