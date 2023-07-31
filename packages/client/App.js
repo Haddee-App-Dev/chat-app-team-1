@@ -20,15 +20,12 @@ function HomeScreen() {
       screenOptions={{ headerShown: false }}
     >
       <Tab.Screen name="Chats" component={ChatScreen} options={{
-        headerShown: false,
         tabBarIcon: () => (<Icon name="chat" />)
       }} />
       <Tab.Screen name="Contacts" component={ContactScreen} options={{
-        headerShown: false,
         tabBarIcon: () => (<Icon name="person" />)
       }} />
       <Tab.Screen name="Me" component={SelfProfileScreen} options={{
-        headerShown: false,
         tabBarIcon: () => (<Icon name="person" />),
       }} />
     </Tab.Navigator>
