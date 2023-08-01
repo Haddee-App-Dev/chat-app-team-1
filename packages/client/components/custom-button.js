@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
-const CustomButton = ({ onPress, text, type = "PRIMARY", bgColor, fgColor }) => {
+export const CustomButton = ({ onPress, text, type = "PRIMARY", bgColor, fgColor }) => {
     return (
         <Pressable
             onPress={onPress}
@@ -39,5 +39,3 @@ const styles = StyleSheet.create({
         color: 'white',
     },
 });
-
-export default CustomButton;

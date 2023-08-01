@@ -1,11 +1,11 @@
-import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { SearchBar } from 'react-native-elements';
-import { ChatScreenHeader } from '../components/chatScreenMenu.js';
 import * as React from 'react';
 import tempChatCover from '../assets/favicon.png';
 import { useQuery } from '@apollo/client';
 import { chatDisplayListQuery } from '../api/chatDisplayList.js';
 import { ActivityIndicator } from 'react-native-paper';
+import { ChatScreenHeader, UniversalAppContainer, MenuButton } from '../components';
 
 
 export function ChatScreen() {
@@ -36,23 +36,28 @@ export function ChatScreen() {
         return <ActivityIndicator />
     }
     return (
-        <View style={styles.root}>
-            <ChatScreenHeader />
-            <SearchBar
-                lightTheme={true}
-                placeholder="Search"
-                onChangeText={onChangeSearch}
-                value={searchQuery}
-                containerStyle={styles.searchBarContainer}
-                inputContainerStyle={styles.searchBarInput}
-            />
-            <FlatList
-                horizontal={false}
-                data={data?.TEMP_CHATDISPLAYLIST}
-                renderItem={renderChat}
-                keyExtractor={(item) => item.id}
-            />
-        </View>
+        <UniversalAppContainer>
+            <View style={styles.root}>
+                <ChatScreenHeader
+                    headerTitle="Chats"
+                    button={<MenuButton />}
+                />
+                <SearchBar
+                    lightTheme={true}
+                    placeholder="Search"
+                    onChangeText={onChangeSearch}
+                    value={searchQuery}
+                    containerStyle={styles.searchBarContainer}
+                    inputContainerStyle={styles.searchBarInput}
+                />
+                <FlatList
+                    horizontal={false}
+                    data={data?.chatList}
+                    renderItem={renderChat}
+                    keyExtractor={(item) => item.id}
+                />
+            </View>
+        </UniversalAppContainer>
     );
 }
 
@@ -100,5 +105,10 @@ const styles = StyleSheet.create({
         //alignSelf: 'flex-end',
         fontSize: 12,
         fontWeight: '200',
-    }
+    },
+    icons: {
+        width: 22,
+        height: 22,
+        // marginLeft: 'auto'
+    },
 })

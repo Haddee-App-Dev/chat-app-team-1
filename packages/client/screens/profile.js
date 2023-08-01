@@ -1,8 +1,10 @@
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { ChatScreenHeader } from '../components';
 
 export function SelfProfileScreen() {
     return (
         <SafeAreaView style={styles.root}>
+            <ChatScreenHeader headerTitle="Profile" />
             <Text>Profile!</Text>
         </SafeAreaView>
     );

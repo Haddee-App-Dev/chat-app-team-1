@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
-import CustomInput from "../components/customInput";
-import CustomButton from "../components/customButton";
+import { CustomInput, CustomButton } from '../components';
+import { signUp } from "../util/auth.js";
 
-const SignUp = ({ navigation }) => {
+export const SignUp = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordReEntry, setPasswordReEntry] = useState('');
 
-    const handleSignUp = () => {
-        //additional login logic required
+    const handleSignUp = async () => {
+        await signUp(email, password);
+
         navigation.navigate('HomeScreen', { screen: 'Chats' });
     }
     const navigateSignIn = () => {
@@ -21,26 +22,24 @@ const SignUp = ({ navigation }) => {
             <View style={styles.root}>
                 <Text style={styles.title}> Create an account </Text>
                 <CustomInput
-                    placeholder="Username"
-                    value={username}
-                    onChangeText={setUsername}
-                />
-                <CustomInput
                     placeholder="Email"
                     value={email}
                     onChangeText={setEmail}
+                    autoCapitalize="none"
                 />
                 <CustomInput
                     placeholder="Password"
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={true}
+                    autoCapitalize="none"
                 />
                 <CustomInput
                     placeholder="Password Re-Entry"
                     value={passwordReEntry}
                     onChangeText={setPasswordReEntry}
                     secureTextEntry={true}
+                    autoCapitalize="none"
                 />
                 <CustomButton
                     text="Sign Up"
@@ -53,7 +52,7 @@ const SignUp = ({ navigation }) => {
                     fgColor="#3B71F3"
                 />
                 <CustomButton
-                    text="Don't have an account?"
+                    text="Already have an account?"
                     onPress={navigateSignIn}
                     type="TERTIARY"
                 />
@@ -73,4 +72,3 @@ const styles = StyleSheet.create({
         margin: 10,
     }
 });
-export default SignUp
