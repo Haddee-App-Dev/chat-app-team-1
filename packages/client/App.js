@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { NavigationContainer } from "@react-navigation/native";
+// import { NavigationContainer } from "@react-navigation/native";
 import { UniversalAppContainer } from './components';
 import { PaperProvider } from "react-native-paper";
 import { ApolloProvider } from "@apollo/client";
@@ -12,9 +12,7 @@ export default function App() {
     <ApolloProvider client={client}>
       <PaperProvider>
         <UniversalAppContainer>
-          <NavigationContainer>
-            <AppNavigation />
-          </NavigationContainer>
+          <AppNavigation />
         </UniversalAppContainer>
       </PaperProvider>
     </ApolloProvider>
