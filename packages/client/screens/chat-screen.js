@@ -31,6 +31,7 @@ export function ChatScreen() {
     }
 
     const { loading, data, error } = useQuery(chatDisplayListQuery);
+    console.log(error);
 
     if (loading) {
         return <ActivityIndicator />

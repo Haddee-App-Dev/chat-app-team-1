@@ -6,6 +6,7 @@
   "type": "module",
   "dependencies": {
     "@apollo/server": "^4.7.5",
+    "firebase-admin": "^11.10.1",
     "graphql": "^16.7.1"
   },
   "scripts": {

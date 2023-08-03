@@ -1,4 +1,5 @@
 
+import { createChatRoom } from "../services/chat.js";
 
 //Figure out how to put chatcover later + move to firebase storage
 const TEMP_CHATDISPLAYLIST = [
@@ -27,6 +28,11 @@ export const resolvers = {
             const { email } = params;
             console.log('Create New User function called');
             return await createNewUser(email);
+        },
+        createChatRoom: async (_, params) => {
+            const { userId, id } = params;
+            console.log("Creating chat room");
+            return await createChatRoom(userId, id);
         }
     }
 };
