@@ -6,14 +6,17 @@ import { PaperProvider } from "react-native-paper";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./graphql.js";
 import { AppNavigation } from './navigation';
+import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 
 export default function App() {
   return (
     <ApolloProvider client={client}>
       <PaperProvider>
-        <UniversalAppContainer>
-          <AppNavigation />
-        </UniversalAppContainer>
+        <RecoilRoot>
+          <UniversalAppContainer>
+            <AppNavigation />
+          </UniversalAppContainer>
+        </RecoilRoot>
       </PaperProvider>
     </ApolloProvider>
   );
