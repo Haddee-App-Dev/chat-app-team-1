@@ -23,7 +23,7 @@ export const UserCard = (props) => {
                 id: user.id,
                 userId: selectedUser.id
             },
-            onCompleted: () => {
+            onCompleted: (data) => {
                 navigation.navigate('chat', {
                     chatRoomId: data.createChatRoom.id
                 })
