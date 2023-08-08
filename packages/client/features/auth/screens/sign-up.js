@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
-import { CustomInput, CustomButton } from '../components';
+import { CustomInput, CustomButton } from '../../../components';
 import { signUp } from "../util/auth.js";
 
 export const SignUp = ({ navigation }) => {
