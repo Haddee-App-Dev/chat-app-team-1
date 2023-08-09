@@ -1,19 +1,41 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { View, StyleSheet, Text, ScrollView, Alert } from "react-native";
 import { CustomInput, CustomButton } from '../components';
 import { signUp } from "../util/auth.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../lib/firebase";
 
 export const SignUp = ({ navigation }) => {
-    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordReEntry, setPasswordReEntry] = useState('');
 
     const handleSignUp = async () => {
-        await signUp(email, password);
+        //await signUp(email, password);
+        //temporary deprecated
+        if (password == passwordReEntry) {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed Up
+                    const user = userCredential.user;
+                    console.log(user);
+                    navigation.navigate('HomeScreen', { screen: 'Chats' });
+                })
 
-        navigation.navigate('HomeScreen', { screen: 'Chats' });
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    Alert.alert("Error", errorMessage);
+                    console.log(errorCode);
+                    console.log(errorMessage);
+                });
+        }
+        else {
+            Alert.alert("Error", "Passwords do not match");
+            console.log("Passwords do not match");
+        }
     }
+
     const navigateSignIn = () => {
         navigation.navigate('Login');
     }
@@ -26,6 +48,7 @@ export const SignUp = ({ navigation }) => {
                     value={email}
                     onChangeText={setEmail}
                     autoCapitalize="none"
+                    autoCorrect={false}
                 />
                 <CustomInput
                     placeholder="Password"
@@ -33,6 +56,7 @@ export const SignUp = ({ navigation }) => {
                     onChangeText={setPassword}
                     secureTextEntry={true}
                     autoCapitalize="none"
+                    autoCorrect={false}
                 />
                 <CustomInput
                     placeholder="Password Re-Entry"
@@ -40,13 +64,14 @@ export const SignUp = ({ navigation }) => {
                     onChangeText={setPasswordReEntry}
                     secureTextEntry={true}
                     autoCapitalize="none"
+                    autoCorrect={false}
                 />
                 <CustomButton
                     text="Sign Up"
                     onPress={handleSignUp}
                 />
                 <CustomButton
-                    text="Sign In with Google"
+                    text="Sign Up with Google"
                     onPress={handleSignUp} //additional sign in w/ google logic required
                     bgColor="#E7EAF4"
                     fgColor="#3B71F3"

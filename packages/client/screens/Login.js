@@ -1,18 +1,34 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, useWindowDimensions, ScrollView } from "react-native";
+import { View, StyleSheet, Image, useWindowDimensions, ScrollView, Alert } from "react-native";
 import { CustomInput, CustomButton } from '../components';
 import Logo from "../assets/icon.png";
 import { signIn } from "../util/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../lib/firebase";
 
 export const Login = ({ navigation }) => {
-    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { height } = useWindowDimensions();
 
     const handleLogin = async () => {
-        await signIn(email, password);
-        navigation.navigate('HomeScreen', { screen: 'Chats' });
+        //await signIn(email, password);
+        //temporary deprecated
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                console.log(user);
+                navigation.navigate('HomeScreen', { screen: 'Chats' });
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                Alert.alert("Error", errorMessage);
+                console.log(errorCode);
+                console.log(errorMessage);
+            });
     }
     const navigateSignUp = () => {
         navigation.navigate('SignUp');
@@ -27,6 +43,7 @@ export const Login = ({ navigation }) => {
                     value={email}
                     onChangeText={setEmail}
                     autoCapitalize="none"
+                    autoCorrect={false}
                 />
                 <CustomInput
                     placeholder="Password"
@@ -34,6 +51,7 @@ export const Login = ({ navigation }) => {
                     onChangeText={setPassword}
                     secureTextEntry={true}
                     autoCapitalize="none"
+                    autoCorrect={false}
                 />
                 <CustomButton
                     text="Sign In"
