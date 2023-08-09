@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Image, useWindowDimensions, ScrollView, Alert } from "react-native";
 import { CustomInput, CustomButton } from '../components';
+//import { Snackbar } from "@react-native-material/core";
 import Logo from "../assets/icon.png";
 import { signIn } from "../util/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -23,11 +24,10 @@ export const Login = ({ navigation }) => {
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
-                Alert.alert("Error", errorMessage);
-                console.log(errorCode);
-                console.log(errorMessage);
+                //...
+                //Snackbar implementation above
+                Alert.alert("Error", errorMessage); //Alert implementation
             });
     }
     const navigateSignUp = () => {

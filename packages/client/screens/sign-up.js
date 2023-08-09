@@ -18,21 +18,16 @@ export const SignUp = ({ navigation }) => {
                 .then((userCredential) => {
                     // Signed Up
                     const user = userCredential.user;
-                    console.log(user);
                     navigation.navigate('HomeScreen', { screen: 'Chats' });
                 })
 
                 .catch((error) => {
-                    const errorCode = error.code;
                     const errorMessage = error.message;
                     Alert.alert("Error", errorMessage);
-                    console.log(errorCode);
-                    console.log(errorMessage);
                 });
         }
         else {
             Alert.alert("Error", "Passwords do not match");
-            console.log("Passwords do not match");
         }
     }
 

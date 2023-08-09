@@ -24,10 +24,9 @@ export function SelfProfileScreen({ navigation }) {
             <CustomButton
                 text="Sign Out"
                 onPress={() => signOut(auth).then(() => {
-                    console.log("Signed Out");
                     navigation.navigate('Login');
                 }).catch((error) => {
-                    console.log(error);
+                    Alert.alert("Error", error);
                 })}
             />
 
