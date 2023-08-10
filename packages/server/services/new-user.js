@@ -7,7 +7,11 @@ export const createNewUserCustom = async (id, email, username) => {
             email: email,
             username: username
         });
-        return await doc.get();
+        return {
+            id: id,
+            email: email,
+            username: username
+        };
     }
     catch (err) {
         console.log(err);
