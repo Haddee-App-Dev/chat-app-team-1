@@ -4,8 +4,6 @@ import { CustomInput, CustomButton } from '../../../components';
 import { signUp } from "../util/auth.js";
 import { useMutation } from "@apollo/client";
 import { createNewUserCustomMutation } from "../api";
-import { useRecoilState } from "recoil";
-import { userAtom } from "../../../atoms";
 
 export const SignUp = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -16,12 +14,12 @@ export const SignUp = ({ navigation }) => {
 
     //SignUp using google ?
     const handleSignUp = async () => {
-        const promise = await signUp(username, email, password);
+        const promise = await signUp(email, password);
         navigation.navigate('HomeScreen', { screen: 'Chats' });
     }
 
     const handleCreateNewUser = async () => {
-        const id = await signUp(username, email, password);
+        const id = await signUp(email, password);
         createNewUser({
             variables: {
                 id: id,

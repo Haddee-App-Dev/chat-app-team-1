@@ -26,12 +26,12 @@ export const resolvers = {
     Mutation: {
         createNewUserCustom: async (_, params) => {
             const { id, email, username } = params;
-            console.log('Create New User function called');
+            //console.log('Create New User function called');
             return await createNewUserCustom(id, email, username);
         },
         createChatRoom: async (_, params) => {
             const { userId, id } = params;
-            console.log("Creating chat room");
+            //console.log("Creating chat room");
             return await createChatRoom(userId, id);
         }
     }
