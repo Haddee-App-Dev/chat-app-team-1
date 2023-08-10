@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Image, useWindowDimensions, ScrollView } from "react-native";
-import { CustomInput, CustomButton } from '../components';
-import Logo from "../assets/icon.png";
+import { CustomInput, CustomButton } from '../../../components';
+import Logo from "../../../assets/icon.png";
 import { signIn } from "../util/auth";
 
 export const Login = ({ navigation }) => {

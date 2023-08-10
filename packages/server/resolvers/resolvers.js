@@ -1,5 +1,5 @@
 
-import { createChatRoom } from "../services/chat.js";
+import { createChatRoom, createNewUserCustom } from "../services/index.js";
 
 //Figure out how to put chatcover later + move to firebase storage
 const TEMP_CHATDISPLAYLIST = [
@@ -24,14 +24,14 @@ export const resolvers = {
         }
     },
     Mutation: {
-        createNewUser: async (_, params) => {
-            const { email } = params;
-            console.log('Create New User function called');
-            return await createNewUser(email);
+        createNewUserCustom: async (_, params) => {
+            const { id, email, username } = params;
+            //console.log('Create New User function called');
+            return await createNewUserCustom(id, email, username);
         },
         createChatRoom: async (_, params) => {
             const { userId, id } = params;
-            console.log("Creating chat room");
+            //console.log("Creating chat room");
             return await createChatRoom(userId, id);
         }
     }

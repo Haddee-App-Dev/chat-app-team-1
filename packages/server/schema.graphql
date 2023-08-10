@@ -11,6 +11,7 @@ type ChatDisplayList {
 type User{
     id: String!
     email: String!
+    username: String
 }
 
 type Query {
@@ -22,6 +23,7 @@ type ChatRoom{
 }
 
 type Mutation{
-    createNewUser(id: String!, email: String!): User
+    createNewUser(id: String!, email: String!): User!
+    createNewUserCustom(id: String!, email: String!, username: String!): User!
     createChatRoom(id: String!, userId: String): ChatRoom!
 }

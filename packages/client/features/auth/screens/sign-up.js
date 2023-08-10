@@ -1,26 +1,48 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
-import { CustomInput, CustomButton } from '../components';
+import { CustomInput, CustomButton } from '../../../components';
 import { signUp } from "../util/auth.js";
+import { useMutation } from "@apollo/client";
+import { createNewUserCustomMutation } from "../api";
 
 export const SignUp = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordReEntry, setPasswordReEntry] = useState('');
+    const [createNewUser, { error }] = useMutation(createNewUserCustomMutation);
 
+    //SignUp using google ?
     const handleSignUp = async () => {
-        await signUp(email, password);
-
+        const promise = await signUp(email, password);
         navigation.navigate('HomeScreen', { screen: 'Chats' });
     }
+
+    const handleCreateNewUser = async () => {
+        const id = await signUp(email, password);
+        createNewUser({
+            variables: {
+                id: id,
+                email: email,
+                username: username
+            }
+        });
+    }
+
     const navigateSignIn = () => {
         navigation.navigate('Login');
     }
+
     return (
         <ScrollView showsVerticalScrollIndicato={false}>
             <View style={styles.root}>
                 <Text style={styles.title}> Create an account </Text>
+                <CustomInput
+                    placeholder="Username"
+                    value={username}
+                    onChangeText={setUsername}
+                    autoCapitalize="none"
+                />
                 <CustomInput
                     placeholder="Email"
                     value={email}
@@ -43,7 +65,7 @@ export const SignUp = ({ navigation }) => {
                 />
                 <CustomButton
                     text="Sign Up"
-                    onPress={handleSignUp}
+                    onPress={handleCreateNewUser}
                 />
                 <CustomButton
                     text="Sign In with Google"

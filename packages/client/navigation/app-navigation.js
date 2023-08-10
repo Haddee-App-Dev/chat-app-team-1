@@ -21,12 +21,12 @@ export function AppNavigation() {
             if (user) {
                 const uid = user.uid;
                 setUser({ id: uid });
-                console.log('uid', uid);
+                //console.log('uid', uid);
                 setIsAuth(true);
             }
             else {
                 setIsAuth(false);
-                console.log("User is logged out");
+                //console.log("User is logged out");
             }
         })
     }, []);
