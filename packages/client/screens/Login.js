@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Image, useWindowDimensions, ScrollView, Alert } from "react-native";
+import { Snackbar } from "react-native-paper";
 import { CustomInput, CustomButton } from '../components';
-//import { Snackbar } from "@react-native-material/core";
 import Logo from "../assets/icon.png";
 import { signIn } from "../util/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -12,22 +12,25 @@ export const Login = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const { height } = useWindowDimensions();
 
+    const [visible, setVisible] = React.useState(false);
+    const onToggleSnackBar = () => setVisible(!visible);
+    const onDismissSnackBar = () => setVisible(false);
+    const errorMessage = "Invalid email or password";
+    //Temporary solution, errorMessage in catch block is not working
+
     const handleLogin = async () => {
         //await signIn(email, password);
-        //temporary deprecated
+        //above is temporary deprecated
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
-                const user = userCredential.user;
-                console.log(user);
                 navigation.navigate('HomeScreen', { screen: 'Chats' });
-                // ...
             })
             .catch((error) => {
                 const errorMessage = error.message;
-                //...
+                onToggleSnackBar();
                 //Snackbar implementation above
-                Alert.alert("Error", errorMessage); //Alert implementation
+                //Alert.alert("Error", errorMessage); //Alert implementation
             });
     }
     const navigateSignUp = () => {
@@ -35,7 +38,7 @@ export const Login = ({ navigation }) => {
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicato={false}>
+        <><ScrollView showsVerticalScrollIndicato={false}>
             <View style={styles.root}>
                 <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
                 <CustomInput
@@ -43,33 +46,37 @@ export const Login = ({ navigation }) => {
                     value={email}
                     onChangeText={setEmail}
                     autoCapitalize="none"
-                    autoCorrect={false}
-                />
+                    autoCorrect={false} />
                 <CustomInput
                     placeholder="Password"
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={true}
                     autoCapitalize="none"
-                    autoCorrect={false}
-                />
+                    autoCorrect={false} />
                 <CustomButton
                     text="Sign In"
-                    onPress={handleLogin}
-                />
+                    onPress={handleLogin} />
                 <CustomButton
                     text="Sign In with Google"
                     onPress={handleLogin}
                     bgColor="#E7EAF4"
-                    fgColor="#3B71F3"
-                />
+                    fgColor="#3B71F3" />
                 <CustomButton
                     text="Don't have an account?"
                     onPress={navigateSignUp}
-                    type="TERTIARY"
-                />
+                    type="TERTIARY" />
+
             </View>
-        </ScrollView>
+
+        </ScrollView><Snackbar
+            wrapperStyle={{ bottom: 0 }}
+            visible={visible}
+            duration={3000}
+            onDismiss={onDismissSnackBar}
+        >
+                {errorMessage}
+            </Snackbar></>
     );
 };
 const styles = StyleSheet.create({
