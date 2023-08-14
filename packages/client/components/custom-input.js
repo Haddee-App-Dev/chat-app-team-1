@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 
-export const CustomInput = ({ placeholder, value, onChangeText, secureTextEntry, icon }) => {
+export const CustomInput = ({ placeholder, value, onChangeText, secureTextEntry, autoCapitalize, autoCorrect }) => {
     return (
         <View style={styles.container}>
             <TextInput
@@ -10,6 +10,8 @@ export const CustomInput = ({ placeholder, value, onChangeText, secureTextEntry,
                 value={value}
                 onChangeText={onChangeText}
                 secureTextEntry={secureTextEntry}
+                autoCapitalize={autoCapitalize}
+                autoCorrect={autoCorrect}
             />
         </View>
     );
