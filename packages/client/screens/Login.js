@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, useWindowDimensions, ScrollView, Alert } from "react-native";
+import { View, StyleSheet, Image, useWindowDimensions, ScrollView } from "react-native";
 import { Snackbar } from "react-native-paper";
 import { CustomInput, CustomButton } from '../components';
 import Logo from "../assets/icon.png";
