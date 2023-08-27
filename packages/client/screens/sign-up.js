@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, ScrollView, Alert } from "react-native";
+import { View, StyleSheet, Text, ScrollView, ActivityIndicator } from "react-native";
 import { CustomInput, CustomButton } from '../components';
 import { Snackbar } from "react-native-paper";
 import { signUp } from "../util/auth.js";
@@ -7,6 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../lib/firebase";
 
 export const SignUp = ({ navigation }) => {
+    const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordReEntry, setPasswordReEntry] = useState('');
@@ -16,21 +17,27 @@ export const SignUp = ({ navigation }) => {
     const onDismissSnackBar = () => setVisible(false);
     const errorMessage = "Invalid email or password";
     //Temporary solution, errorMessage in catch block is not working
+    const onToggleLoading = () => setIsLoading(!isLoading);
+    const onDismissLoading = () => setIsLoading(false);
+
 
     const handleSignUp = async () => {
         //await signUp(email, password);
         //temporary deprecated
+        onToggleLoading();
         if (password == passwordReEntry) {
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     // Signed Up
                     const user = userCredential.user;
                     navigation.navigate('HomeScreen', { screen: 'Chats' });
+                    onDismissLoading();
                 })
 
                 .catch((error) => {
                     const errorMessage = error.message;
                     onToggleSnackBar();
+                    onDismissLoading();
                 });
         }
         else {
@@ -77,6 +84,9 @@ export const SignUp = ({ navigation }) => {
                     text="Already have an account?"
                     onPress={navigateSignIn}
                     type="TERTIARY" />
+                <ActivityIndicator
+                    animating={isLoading}
+                />
             </View>
         </ScrollView><Snackbar
             wrapperStyle={{ bottom: 0 }}

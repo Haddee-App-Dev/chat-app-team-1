@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, useWindowDimensions, ScrollView } from "react-native";
+import { View, StyleSheet, Image, useWindowDimensions, ScrollView, ActivityIndicator } from "react-native";
 import { Snackbar } from "react-native-paper";
 import { CustomInput, CustomButton } from '../components';
 import Logo from "../assets/icon.png";
@@ -8,6 +8,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../lib/firebase";
 
 export const Login = ({ navigation }) => {
+    const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { height } = useWindowDimensions();
@@ -15,20 +16,26 @@ export const Login = ({ navigation }) => {
     const [visible, setVisible] = React.useState(false);
     const onToggleSnackBar = () => setVisible(!visible);
     const onDismissSnackBar = () => setVisible(false);
+    const onToggleLoading = () => setIsLoading(!isLoading);
+    const onDismissLoading = () => setIsLoading(false);
+
     const errorMessage = "Invalid email or password";
     //Temporary solution, errorMessage in catch block is not working
 
     const handleLogin = async () => {
         //await signIn(email, password);
         //above is temporary deprecated
+        onToggleLoading();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
                 navigation.navigate('HomeScreen', { screen: 'Chats' });
+                onDismissLoading();
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 onToggleSnackBar();
+                onDismissLoading();
                 //Snackbar implementation above
                 //Alert.alert("Error", errorMessage); //Alert implementation
             });
@@ -66,7 +73,9 @@ export const Login = ({ navigation }) => {
                     text="Don't have an account?"
                     onPress={navigateSignUp}
                     type="TERTIARY" />
-
+                <ActivityIndicator
+                    animating={isLoading}
+                />
             </View>
 
         </ScrollView><Snackbar
