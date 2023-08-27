@@ -37,28 +37,27 @@ export function ChatScreen() {
         return <ActivityIndicator />
     }
     return (
-        <UniversalAppContainer>
-            <View style={styles.root}>
-                <ChatScreenHeader
-                    headerTitle="Chats"
-                    button={<MenuButton />}
-                />
-                <SearchBar
-                    lightTheme={true}
-                    placeholder="Search"
-                    onChangeText={onChangeSearch}
-                    value={searchQuery}
-                    containerStyle={styles.searchBarContainer}
-                    inputContainerStyle={styles.searchBarInput}
-                />
-                <FlatList
-                    horizontal={false}
-                    data={data?.chatList}
-                    renderItem={renderChat}
-                    keyExtractor={(item) => item.id}
-                />
-            </View>
-        </UniversalAppContainer>
+        //Universal App Container removed here because it leaves a white space at the top
+        <View style={styles.root}>
+            <ChatScreenHeader
+                headerTitle="Chats"
+                button={<MenuButton />}
+            />
+            <SearchBar
+                lightTheme={true}
+                placeholder="Search"
+                onChangeText={onChangeSearch}
+                value={searchQuery}
+                containerStyle={styles.searchBarContainer}
+                inputContainerStyle={styles.searchBarInput}
+            />
+            <FlatList
+                horizontal={false}
+                data={data?.chatList}
+                renderItem={renderChat}
+                keyExtractor={(item) => item.id}
+            />
+        </View>
     );
 }
 
@@ -99,17 +98,17 @@ const styles = StyleSheet.create({
     },
     chatDateContainer: {
         marginLeft: 'auto',
-        marginBottom: 'auto',
-        backgroundColor: 'yellow'
+        marginBottom: 'auto'
+        //backgroundColor: 'yellow'
     },
     chatDateStyle: {
-        //alignSelf: 'flex-end',
+        alignSelf: 'flex-end',
         fontSize: 12,
         fontWeight: '200',
     },
     icons: {
-        width: 22,
-        height: 22,
+        width: 21,
+        height: 21,
         // marginLeft: 'auto'
     },
 })

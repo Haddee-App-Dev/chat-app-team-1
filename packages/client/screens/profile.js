@@ -1,11 +1,13 @@
-import { Text, SafeAreaView, StyleSheet, Alert } from 'react-native';
+import { View, useWindowDimensions, Image, Text, SafeAreaView, StyleSheet, Alert } from 'react-native';
 import { ChatScreenHeader } from '../components';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from 'react';
 import { auth } from "../lib/firebase";
+import tempChatCover from '../assets/favicon.png';
 import { CustomButton } from '../components';
 
 export function SelfProfileScreen({ navigation }) {
+    const { height } = useWindowDimensions();
     const user = auth.currentUser.email;
     /*try {
         const user = auth.currentUser.email;
@@ -20,7 +22,10 @@ export function SelfProfileScreen({ navigation }) {
     return (
         <SafeAreaView style={styles.root}>
             <ChatScreenHeader headerTitle="Profile" />
-            <Text>Signed In as {user}!</Text>
+            <View styles={styles.profileContainer}>
+                <Image source={tempChatCover} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
+                <Text style={styles.text} > Signed in as {user}!</Text>
+            </View>
             <CustomButton
                 text="Sign Out"
                 onPress={() => signOut(auth).then(() => {
@@ -28,14 +33,31 @@ export function SelfProfileScreen({ navigation }) {
                 }).catch((error) => {
                     Alert.alert("Error", error);
                 })}
+                bgColor="#E7EAF4"
+                fgColor="#3B71F3"
             />
-
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     root: {
-        flex: 1
+        flex: 1,
+    },
+    logo: {
+        width: '60%',
+        maxWidth: 100,
+        maxHeight: 100,
+        backgroundColor: 'white',
+        margin: 20,
+        alignSelf: 'left'
+    },
+    profileContainer: {
+        backgroundColor: 'white', // Background color for the profile container
+    },
+    text: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        margin: 8,
     }
 })
